@@ -1,47 +1,47 @@
-#include<iostream>
-#include<string>
-#include<cctype>  //isalpha()判断
+#include <iostream>
+#include <cstdlib>
+#include <cstdio>
+#include<cctype>
+
 using namespace std;
 
-int isVowel(char alpa);
+char temp[100000];
+bool isvowel(char c)
+{
+	if (c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U')
+		return 1;
+    else
+        return 0;
+}
 
 int main()
 {
-	string st="",buf="";  
-	int i,j;  
-	while(getline(cin,st))//读取cin输入流，到默认终止符（\n）为止
-	{
-		for(i=0;i<st.length();)
-		{
-			if(isalpha(st[i]))
-			{  
-				for(j=0;isalpha(st[i]);)
-				{  
-					buf[j++]=st[i++];  
-				}  
-				buf[j]='\0';//记录一个单词  
-				if(isVowel(buf[0]))
-				{  
-					cout<<&buf[0]<<"ay";  
-				}  
-				else if(!isVowel(buf[0]))
-				{  
-					cout<<&buf[1]<<buf[0]<<"ay";  
-				}                      //输出一个单词  
-			}  
-			else{  
-				cout<<st[i++];  
-			}  
-		}  
-		cout<<endl;  
-	}  
-	return 0;  
-}  
-int isVowel(char alpa)
-{  
-	switch(alpa){  
-	case 'a':case 'e':case 'i':case 'o':case 'u':  
-	case 'A':case 'E':case 'I':case 'O':case 'U':return 1;  
-	default: return 0;  
-	};  
-}  
+	while(gets(temp))
+        {
+		int s = 0,t = 0;
+		while(temp[s])
+			if (!isalpha(temp[s]))
+			{
+				printf("%c",temp[s++]);
+				t=s;
+			}
+			else if(isalpha(temp[t]))
+				t++;
+			else
+                {
+				if(!isvowel(temp[s]))
+                    {
+					for(int i=s+1;i<t;++i)
+						printf("%c",temp[i]);
+					printf("%c",temp[s]);
+				}
+				else
+					for(int i=s;i<t;++i)
+						printf("%c",temp[i]);
+				printf("ay");
+				s=t;
+			}
+		printf("\n");
+	}
+	return 0;
+}
