@@ -1,11 +1,12 @@
-#include <iostream>
-#include <cstdlib>
-#include <cstdio>
+#include<iostream>
+#include<cstdlib>
+#include<cstdio>
+#include<cstring>
 #include<cctype>
 
 using namespace std;
 
-char temp[100000];
+char temp[100];
 bool isvowel(char c)
 {
 	if (c=='a'||c=='e'||c=='i'||c=='o'||c=='u'||c=='A'||c=='E'||c=='I'||c=='O'||c=='U')
@@ -16,7 +17,7 @@ bool isvowel(char c)
 
 int main()
 {
-	while(gets(temp))
+	while(cin.getline(temp,100))
         {
 		int s = 0,t = 0;
 		while(temp[s])
